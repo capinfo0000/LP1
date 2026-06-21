@@ -5,9 +5,9 @@ Pexels License により商用・非商用を問わず無料で利用・改変�
 
 | ファイル | 用途 | 出典 |
 |---|---|---|
-| hero-care.jpg | ファーストビュー | https://www.pexels.com/photo/3768131/ |
+| hero.jpg | ファーストビュー | https://www.pexels.com/photo/7551617/ |
 | about-app.jpg | サービス紹介 | https://www.pexels.com/photo/3823488/ |
 | about-home.jpg | サービス紹介 | https://www.pexels.com/photo/7551668/ |
-| team-pro.jpg | 有資格者・安心の帯 | https://www.pexels.com/photo/6129507/ |
+| trust.jpg | 有資格者・安心の帯 | https://www.pexels.com/photo/5214958/ |
 
 ※ 写真はサンプルです。実サービスの内容に合わせて差し替えてください。
