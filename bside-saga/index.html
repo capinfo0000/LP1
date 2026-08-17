@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>九州出張を、ちょっとたのしく。｜B-SIDE SAGA（サンプル）</title>
+<meta name="description" content="ひとりでも満喫できる佐賀の魅力。食べ呑み歩き、すきま時間の寄り道、そして空港が最高。九州出張をちょっとたのしくする方法（デザインサンプル）。" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --sky:#3E9FE0; --sky-light:#7FC8F1; --sky-deep:#2A7FC0;
+    --cream:#FBF6EC; --cream-2:#F3ECDC;
+    --ink:#21344B; --muted:#5E7085;
+    --coral:#FF6E5B; --coral-deep:#F0553F;
+    --sun:#FFC24C;
+    --white:#FFFFFF; --line:#E7DFCE;
+
+    --maxw:1120px; --radius:18px;
+    --shadow-sm:0 1px 2px rgba(30,50,75,.05), 0 12px 30px rgba(30,50,75,.08);
+    --shadow-md:0 18px 50px rgba(30,50,75,.16);
+
+    --display:"Zen Maru Gothic", system-ui, sans-serif;
+    --body:"Noto Sans JP", system-ui, sans-serif;
+    --num:"Outfit", system-ui, sans-serif;
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; font-family:var(--body); color:var(--ink); background:var(--cream); line-height:1.85; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3,h4 { font-family:var(--display); margin:0; line-height:1.4; font-weight:700; }
+  p { margin:0; } a { color:inherit; text-decoration:none; } img { max-width:100%; display:block; } ul { margin:0; padding:0; list-style:none; }
+  .wrap { width:100%; max-width:var(--maxw); margin:0 auto; padding-inline:22px; }
+
+  .eyebrow { display:inline-flex; align-items:center; gap:8px; font-family:var(--num); font-weight:700; letter-spacing:.14em; font-size:.8rem; text-transform:uppercase; color:var(--sky-deep); }
+  .eyebrow .no { background:var(--coral); color:#fff; font-weight:800; border-radius:6px; padding:2px 9px; }
+
+  .btn { display:inline-flex; align-items:center; gap:10px; font-family:var(--display); font-weight:700; font-size:1.02rem; padding:15px 26px; border-radius:999px; cursor:pointer; border:2px solid transparent; transition:transform .18s, box-shadow .18s, background .18s; }
+  .btn .arr { font-family:var(--num); font-weight:800; }
+  .btn--coral { background:var(--coral); color:#fff; box-shadow:0 10px 24px rgba(240,85,63,.34); }
+  .btn--coral:hover { background:var(--coral-deep); transform:translateY(-2px); }
+  .btn--white { background:#fff; color:var(--sky-deep); box-shadow:var(--shadow-sm); }
+  .btn--white:hover { transform:translateY(-2px); }
+  .btn--lg { padding:18px 34px; font-size:1.1rem; }
+
+  /* ===== Tab nav (sticky) ===== */
+  .nav { position:sticky; top:0; z-index:50; background:rgba(251,246,236,.86); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
+  .nav-in { display:flex; align-items:center; justify-content:space-between; height:64px; }
+  .brand { font-family:var(--display); font-weight:900; font-size:1.2rem; display:flex; align-items:center; gap:9px; }
+  .brand .dot { width:26px; height:26px; border-radius:50%; background:radial-gradient(circle at 35% 30%, var(--sun), var(--coral)); box-shadow:0 3px 8px rgba(240,85,63,.35); }
+  .tabs { display:flex; gap:6px; }
+  .tabs a { font-size:.86rem; font-weight:700; font-family:var(--display); color:var(--muted); padding:8px 12px; border-radius:999px; display:flex; align-items:center; gap:7px; }
+  .tabs a .n { font-family:var(--num); font-weight:800; color:var(--sky); font-size:.82rem; }
+  .tabs a:hover { background:#fff; color:var(--ink); }
+  .nav .btn { padding:9px 18px; font-size:.86rem; }
+  @media (max-width:860px){ .tabs{ display:none; } }
+
+  /* ===== Hero (background video) ===== */
+  .hero { position:relative; min-height:92vh; display:flex; align-items:center; overflow:hidden; color:#fff;
+          background:linear-gradient(160deg,#7FC8F1,#3E9FE0 60%,#2A7FC0); }
+  .hero video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
+  .hero .veil { position:absolute; inset:0; z-index:1;
+    background:linear-gradient(180deg, rgba(20,50,80,.28), rgba(20,50,80,.12) 40%, rgba(20,50,80,.45)); }
+  .hero .wrap { position:relative; z-index:2; width:100%; }
+  .hero .tagpill { display:inline-block; background:rgba(255,255,255,.22); border:1px solid rgba(255,255,255,.5); backdrop-filter:blur(4px); padding:7px 18px; border-radius:999px; font-family:var(--display); font-weight:700; font-size:.92rem; }
+  .hero h1 { font-weight:900; font-size:clamp(2.3rem,6.4vw,4.6rem); line-height:1.24; margin-top:20px; text-shadow:0 4px 22px rgba(10,40,70,.35); }
+  .hero h1 .paint { color:var(--sun); }
+  .hero .lead { margin-top:20px; font-size:clamp(1rem,2.4vw,1.2rem); max-width:24em; text-shadow:0 2px 12px rgba(10,40,70,.4); }
+  .hero .cta { display:flex; gap:14px; margin-top:30px; flex-wrap:wrap; }
+  .scroll-cue { position:absolute; z-index:2; left:50%; bottom:22px; transform:translateX(-50%); color:#fff; font-family:var(--num); font-size:.72rem; letter-spacing:.2em; text-align:center; opacity:.9; }
+  .scroll-cue .bar { width:1px; height:34px; background:#fff; margin:8px auto 0; animation:cue 1.8s ease-in-out infinite; transform-origin:top; }
+  @keyframes cue { 0%,100%{ transform:scaleY(.35); opacity:.5;} 50%{ transform:scaleY(1); opacity:1;} }
+
+  /* drifting balloons (decorative, subtle) */
+  .balloon { position:absolute; z-index:1; width:56px; opacity:.9; animation:float 9s ease-in-out infinite; }
+  .balloon.b1 { top:16%; right:12%; animation-delay:0s; }
+  .balloon.b2 { top:34%; right:26%; width:38px; opacity:.75; animation-delay:1.5s; }
+  @keyframes float { 0%,100%{ transform:translateY(0) rotate(-2deg);} 50%{ transform:translateY(-16px) rotate(2deg);} }
+
+  /* ===== Section shell ===== */
+  .section { padding-block:clamp(58px,8vw,104px); }
+  .section--cream { background:var(--cream); }
+  .section--white { background:#fff; }
+  .section--skytint { background:linear-gradient(180deg,#EAF5FD,#F4FAFE); }
+  .s-head { max-width:760px; margin-bottom:clamp(30px,4.5vw,50px); }
+  .s-head h2 { font-size:clamp(1.7rem,4.4vw,2.7rem); font-weight:900; margin-top:12px; }
+  .s-head h2 .u { background:linear-gradient(transparent 62%, var(--sun) 62%); }
+  .s-head p { color:var(--muted); margin-top:14px; }
+
+  /* ===== 01 access ===== */
+  .access { display:grid; grid-template-columns:1.1fr .9fr; gap:36px; align-items:center; }
+  .access .stats { display:flex; gap:14px; flex-wrap:wrap; margin-top:22px; }
+  .access .stat { background:#fff; border:1px solid var(--line); border-radius:14px; padding:18px 20px; box-shadow:var(--shadow-sm); flex:1; min-width:150px; }
+  .access .stat .n { font-family:var(--num); font-weight:800; font-size:2rem; color:var(--sky-deep); line-height:1; }
+  .access .stat .l { font-size:.86rem; color:var(--muted); margin-top:8px; }
+  .map-card { position:relative; background:linear-gradient(150deg,var(--sky-light),var(--sky-deep)); color:#fff; border-radius:20px; padding:34px; box-shadow:var(--shadow-md); overflow:hidden; min-height:230px; }
+  .map-card .big { font-family:var(--num); font-weight:800; font-size:clamp(2.6rem,7vw,4rem); line-height:.95; }
+  .map-card .sub { margin-top:10px; color:rgba(255,255,255,.9); font-size:.94rem; }
+  .map-card .pin { position:absolute; width:12px; height:12px; border-radius:50%; background:var(--sun); box-shadow:0 0 0 6px rgba(255,194,76,.3); }
+  @media (max-width:820px){ .access{ grid-template-columns:1fr; } }
+
+  /* ===== cards (gourmet / spots) ===== */
+  .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-sm); transition:transform .2s, box-shadow .2s; }
+  .card:hover { transform:translateY(-4px); box-shadow:var(--shadow-md); }
+  .card .ph { aspect-ratio:4/3; overflow:hidden; }
+  .card .ph img { width:100%; height:100%; object-fit:cover; transition:transform .4s; }
+  .card:hover .ph img { transform:scale(1.06); }
+  .card .body { padding:20px 20px 24px; }
+  .card .tag { display:inline-block; font-family:var(--num); font-weight:700; font-size:.72rem; letter-spacing:.08em; color:var(--coral); background:#FFF0EC; padding:3px 10px; border-radius:999px; }
+  .card h3 { font-size:1.2rem; font-weight:900; margin-top:10px; }
+  .card p { color:var(--muted); font-size:.92rem; margin-top:8px; }
+  @media (max-width:820px){ .cards{ grid-template-columns:1fr; } }
+
+  /* ===== inserted video band (soai-style) ===== */
+  .videoband { position:relative; overflow:hidden; color:#fff; }
+  .videoband video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
+  .videoband .veil { position:absolute; inset:0; z-index:1; background:linear-gradient(120deg, rgba(20,50,80,.6), rgba(20,50,80,.25)); }
+  .videoband .inner { position:relative; z-index:2; padding-block:clamp(70px,11vw,150px); text-align:center; }
+  .videoband h2 { color:#fff; font-size:clamp(1.7rem,5vw,3rem); font-weight:900; text-shadow:0 4px 20px rgba(10,40,70,.4); }
+  .videoband p { color:rgba(255,255,255,.9); margin-top:14px; max-width:34em; margin-inline:auto; }
+
+  /* ===== 04 airport perks ===== */
+  .perks { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  .perk { background:#fff; border:1px solid var(--line); border-radius:14px; padding:24px 20px; text-align:center; }
+  .perk .ic { width:52px; height:52px; margin:0 auto 12px; border-radius:14px; background:#EAF5FD; color:var(--sky-deep); display:grid; place-items:center; }
+  .perk h4 { font-size:1.02rem; font-weight:900; }
+  .perk p { font-size:.84rem; color:var(--muted); margin-top:6px; }
+  @media (max-width:820px){ .perks{ grid-template-columns:repeat(2,1fr); } }
+
+  /* ===== CTA ===== */
+  .cta-final { position:relative; overflow:hidden; color:#fff; background:linear-gradient(150deg,#7FC8F1,#2A7FC0); }
+  .cta-final .wrap { position:relative; z-index:1; text-align:center; }
+  .coupon { display:inline-flex; align-items:center; gap:14px; background:#fff; color:var(--ink); border-radius:16px; padding:16px 24px; box-shadow:var(--shadow-md); margin-bottom:26px; }
+  .coupon .amt { font-family:var(--num); font-weight:800; font-size:2.2rem; color:var(--coral); line-height:1; }
+  .coupon .amt small { font-size:1rem; }
+  .cta-final h2 { color:#fff; font-size:clamp(1.8rem,5vw,2.8rem); font-weight:900; text-shadow:0 3px 16px rgba(10,40,70,.3); }
+  .cta-final p { color:rgba(255,255,255,.92); margin-top:14px; }
+  .cta-final .cta { display:flex; gap:14px; justify-content:center; margin-top:28px; flex-wrap:wrap; }
+  .cta-final .blob { position:absolute; border-radius:50%; filter:blur(50px); opacity:.5; }
+  .cta-final .blob.b1{ width:340px; height:340px; background:#FFD98A; top:-120px; left:-60px; }
+  .cta-final .blob.b2{ width:300px; height:300px; background:#fff; opacity:.2; bottom:-130px; right:-40px; }
+
+  /* ===== footer ===== */
+  .foot { background:var(--ink); color:#b9c6d6; padding-block:48px 30px; }
+  .foot .brand { color:#fff; }
+  .foot .cols { display:flex; justify-content:space-between; gap:30px; flex-wrap:wrap; }
+  .foot p { font-size:.86rem; color:#8ea1b6; margin-top:14px; max-width:30em; }
+  .foot .links { display:flex; gap:20px; flex-wrap:wrap; }
+  .foot .links a { font-size:.88rem; color:#c3d0de; }
+  .foot .bottom { margin-top:34px; padding-top:20px; border-top:1px solid rgba(255,255,255,.12); font-size:.78rem; color:#7e91a6; }
+
+  /* mobile sticky cta */
+  .mcta { position:fixed; left:0; right:0; bottom:0; z-index:60; background:rgba(255,255,255,.96); backdrop-filter:blur(8px); border-top:1px solid var(--line); padding:11px 16px; display:none; box-shadow:0 -4px 20px rgba(30,50,75,.1); }
+  .mcta .btn { width:100%; }
+  @media (max-width:860px){ .mcta{ display:block; } body{ padding-bottom:78px; } }
+
+  .reveal { opacity:0; transform:translateY(22px); transition:opacity .6s, transform .6s; }
+  .reveal.in { opacity:1; transform:none; }
+  :focus-visible { outline:3px solid var(--coral); outline-offset:2px; border-radius:4px; }
+  @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto;} .reveal{opacity:1;transform:none;transition:none;} .scroll-cue .bar,.balloon{animation:none;} }
+</style>
+</head>
+<body>
+
+<!-- balloon SVG (reused) -->
+<svg width="0" height="0" style="position:absolute"><symbol id="balloon-shape" viewBox="0 0 60 84"><path d="M30 2C15 2 6 13 6 27c0 14 12 24 20 30h8c8-6 20-16 20-30C54 13 45 2 30 2z" fill="#FF6E5B"/><path d="M30 2C22 2 18 13 18 27c0 14 5 24 9 30h6c-3-6-7-16-7-30C26 13 27 2 30 2z" fill="#FFC24C" opacity=".85"/><path d="M26 57h8l2 6h-12z" fill="#21344B"/><rect x="27" y="63" width="6" height="7" rx="1" fill="#21344B"/></symbol></svg>
+
+<!-- ===== Nav ===== -->
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span>B-SIDE SAGA</a>
+    <div class="tabs">
+      <a href="#access"><span class="n">01</span>その空港でいい？</a>
+      <a href="#gourmet"><span class="n">02</span>食べ呑み歩き</a>
+      <a href="#spots"><span class="n">03</span>すきま時間</a>
+      <a href="#airport"><span class="n">04</span>空港が最高</a>
+    </div>
+    <a class="btn btn--coral" href="#coupon">クーポンを見る<span class="arr">→</span></a>
+  </div>
+</nav>
+
+<main id="top">
+
+  <!-- ===== Hero (background video) ===== -->
+  <section class="hero">
+    <video autoplay muted loop playsinline preload="auto" poster="assets/img/balloon2.jpg">
+      <source src="assets/img/hero.mp4" type="video/mp4" />
+    </video>
+    <div class="veil"></div>
+    <svg class="balloon b1" aria-hidden="true"><use href="#balloon-shape"/></svg>
+    <svg class="balloon b2" aria-hidden="true"><use href="#balloon-shape"/></svg>
+    <div class="wrap">
+      <span class="tagpill">ひとり出張を、ちょっとたのしく</span>
+      <h1>九州出張の空、<br /><span class="paint">佐賀</span>から帰ろう。</h1>
+      <p class="lead">乗り継ぎより、まっすぐ空へ。ひとりでも満喫できる佐賀の食と寄り道を、ぜんぶ見せます。</p>
+      <div class="cta">
+        <a class="btn btn--coral btn--lg" href="#coupon">お得なクーポンを見る<span class="arr">→</span></a>
+        <a class="btn btn--white btn--lg" href="#gourmet">佐賀の楽しみ方<span class="arr">→</span></a>
+      </div>
+    </div>
+    <div class="scroll-cue">SCROLL<div class="bar"></div></div>
+  </section>
+
+  <!-- ===== 01 access ===== -->
+  <section class="section section--cream" id="access">
+    <div class="wrap access">
+      <div class="reveal">
+        <span class="eyebrow"><span class="no">01</span> その空港で、ほんとにいい？</span>
+        <h2 style="font-size:clamp(1.7rem,4.4vw,2.6rem);font-weight:900;margin-top:12px;">実は佐賀が、<span class="u">いちばん近い</span>かも。</h2>
+        <p style="color:var(--muted);margin-top:14px;">福岡や長崎の一部エリアからは、佐賀空港のほうが早くてラク。渋滞知らずで、駐車場もゆったり。「なんとなくいつもの空港」を、一度見直してみませんか。</p>
+        <div class="stats">
+          <div class="stat"><div class="n">10<small style="font-size:1rem">分</small></div><div class="l">市街地から近い</div></div>
+          <div class="stat"><div class="n">0<small style="font-size:1rem">円</small></div><div class="l">駐車場（サンプル）</div></div>
+          <div class="stat"><div class="n">6<small style="font-size:1rem">便</small></div><div class="l">1日の発着（例）</div></div>
+        </div>
+      </div>
+      <div class="map-card reveal">
+        <span class="pin" style="top:30%;left:24%"></span>
+        <span class="pin" style="top:56%;left:60%;background:#fff;box-shadow:0 0 0 6px rgba(255,255,255,.25)"></span>
+        <div class="big">SAGA</div>
+        <div class="sub">九州のまんなか、有明海のほとり。<br />クルマでも、バスでも、まっすぐ着く。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 02 gourmet ===== -->
+  <section class="section section--white" id="gourmet">
+    <div class="wrap">
+      <div class="s-head reveal">
+        <span class="eyebrow"><span class="no">02</span> ひとり気ままに、食べ呑み歩き</span>
+        <h2>ひとりだから、<span class="u">好きなだけ</span>。</h2>
+        <p>カウンターで地の魚、ふらり喫茶で一服、〆にパフェ。出張の夜を、ちょっとごほうびに。</p>
+      </div>
+      <ul class="cards">
+        <li class="card reveal"><div class="ph"><img src="assets/img/food.jpg" alt="地元の魚が並ぶ寿司の盛り合わせ" width="1200" height="800" /></div><div class="body"><span class="tag">SEAFOOD</span><h3>カウンターで、地の魚</h3><p>有明海と玄界灘の幸を、ひとり分のちょうどいい量で。日本酒も進みます。</p></div></li>
+        <li class="card reveal"><div class="ph"><img src="assets/img/cafe.jpg" alt="ラテアートを注ぐ喫茶店" width="1200" height="800" /></div><div class="body"><span class="tag">CAFE</span><h3>昭和の喫茶で、一服</h3><p>打ち合わせの前に、深煎りの一杯。時間がゆっくり流れる純喫茶。</p></div></li>
+        <li class="card reveal"><div class="ph"><img src="assets/img/pottery.jpg" alt="有田焼のうつわ" width="1200" height="800" /></div><div class="body"><span class="tag">CRAFT</span><h3>器を、おみやげに</h3><p>有田・伊万里の焼き物。ひとつだけ選ぶ時間も、旅の醍醐味。</p></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== inserted video band (soai-style) ===== -->
+  <section class="videoband">
+    <video autoplay muted loop playsinline preload="auto" poster="assets/img/balloon2.jpg">
+      <source src="assets/img/hero.mp4" type="video/mp4" />
+    </video>
+    <div class="veil"></div>
+    <div class="wrap inner">
+      <h2>空が、いちばんのごちそう。</h2>
+      <p>佐賀といえば、熱気球。秋の空にいくつも浮かぶバルーンは、出張の記憶をちょっと特別にしてくれます。</p>
+    </div>
+  </section>
+
+  <!-- ===== 03 spots ===== -->
+  <section class="section section--cream" id="spots">
+    <div class="wrap">
+      <div class="s-head reveal">
+        <span class="eyebrow"><span class="no">03</span> すきま時間を、有効活用</span>
+        <h2>会議の前後、<span class="u">寄り道</span>で得しよう。</h2>
+        <p>空港を起点に、少し足をのばすだけ。温泉、水郷、焼き物の里まで、意外と近い。</p>
+      </div>
+      <ul class="cards">
+        <li class="card reveal"><div class="ph"><img src="assets/img/balloon2.jpg" alt="有明海の夕景イメージ" width="1400" height="900" /></div><div class="body"><span class="tag">武雄・嬉野</span><h3>名湯で、ととのう</h3><p>とろりとした嬉野温泉で、移動の疲れをリセット。日帰り入浴も。</p></div></li>
+        <li class="card reveal"><div class="ph"><img src="assets/img/pottery.jpg" alt="焼き物の里" width="1200" height="800" /></div><div class="body"><span class="tag">有田・伊万里</span><h3>焼き物の里さんぽ</h3><p>窯元とギャラリーが点在。器好きなら半日いても足りない。</p></div></li>
+        <li class="card reveal"><div class="ph"><img src="assets/img/cafe.jpg" alt="水郷の街のカフェ" width="1200" height="800" /></div><div class="body"><span class="tag">柳川・大川</span><h3>水郷で、川くだり</h3><p>舟に揺られてのんびり。家具の街・大川の工房めぐりもおすすめ。</p></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== 04 airport perks ===== -->
+  <section class="section section--skytint" id="airport">
+    <div class="wrap">
+      <div class="s-head reveal">
+        <span class="eyebrow"><span class="no">04</span> 一周まわって、空港が最高</span>
+        <h2>結局、<span class="u">佐賀空港がラク</span>だった。</h2>
+        <p>コンパクトだから、搭乗までがとにかくスムーズ。出張者にうれしい設備がそろっています。</p>
+      </div>
+      <ul class="perks">
+        <li class="perk reveal"><div class="ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12l20-7-7 20-4-8z"/></svg></div><h4>搭乗までスイスイ</h4><p>コンパクトで迷わない。保安検査もすぐ。</p></li>
+        <li class="perk reveal"><div class="ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="14" height="7" rx="2"/><path d="M17 13h2l2 3v2h-4"/><circle cx="7" cy="19" r="1.6"/><circle cx="16" cy="19" r="1.6"/></svg></div><h4>レンタカーが安い</h4><p>空港すぐ。乗り捨ても柔軟（サンプル）。</p></li>
+        <li class="perk reveal"><div class="ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16M6 19V9l6-4 6 4v10"/><path d="M10 19v-5h4v5"/></svg></div><h4>くつろぎラウンジ</h4><p>フライト前の仕事も、ひと休みも。</p></li>
+        <li class="perk reveal"><div class="ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12l-1 7H7z"/><path d="M5 9h14l1 13H4z"/></svg></div><h4>おみやげも充実</h4><p>銘菓も焼き物も、ここで最後の一品。</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== CTA / coupon ===== -->
+  <section class="section cta-final" id="coupon">
+    <span class="blob b1" aria-hidden="true"></span><span class="blob b2" aria-hidden="true"></span>
+    <div class="wrap">
+      <div class="coupon">
+        <div class="amt">¥5,000<small>分</small></div>
+        <div style="text-align:left"><strong>佐賀⇄羽田便クーポン</strong><br /><span style="font-size:.82rem;color:var(--muted)">※デザインサンプルの告知です</span></div>
+      </div>
+      <h2>次の九州出張は、<br />佐賀から帰ってみない？</h2>
+      <p>ひとりでも、たっぷり楽しい。まずはお得なクーポンをチェック。</p>
+      <div class="cta">
+        <a class="btn btn--coral btn--lg" href="#coupon">クーポンを受け取る<span class="arr">→</span></a>
+        <a class="btn btn--white btn--lg" href="#top">もう一度見る<span class="arr">↑</span></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== footer ===== -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="#top" style="font-size:1.2rem;display:flex;align-items:center;gap:9px;"><span style="width:24px;height:24px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFC24C,#FF6E5B);display:inline-block"></span>B-SIDE SAGA</a>
+        <p>九州出張を、ちょっとたのしくする方法。ひとりでも満喫できる佐賀の魅力を大特集（デザインサンプル）。</p>
+      </div>
+      <div class="links">
+        <a href="#access">その空港でいい？</a>
+        <a href="#gourmet">食べ呑み歩き</a>
+        <a href="#spots">すきま時間</a>
+        <a href="#airport">空港が最高</a>
+      </div>
+    </div>
+    <div class="bottom">© 2026 B-SIDE SAGA（サンプル）｜ 本ページはデザイン学習用のサンプルで、実在の空港・自治体とは無関係です。写真・動画・地名・数値はイメージ／ダミーです。</div>
+  </div>
+</footer>
+
+<div class="mcta"><a class="btn btn--coral" href="#coupon">お得なクーポンを見る<span class="arr">→</span></a></div>
+
+<script>
+  (function(){
+    var els=document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver'in window)||matchMedia('(prefers-reduced-motion: reduce)').matches){els.forEach(function(e){e.classList.add('in');});return;}
+    var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:.12});
+    els.forEach(function(e){io.observe(e);});
+  })();
+  // 動画が再生できない環境ではポスター画像にフォールバック（何もしなくてもposterが出る）
+</script>
+</body>
+</html>
